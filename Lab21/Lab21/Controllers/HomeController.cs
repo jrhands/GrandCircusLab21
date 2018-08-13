@@ -13,6 +13,14 @@ namespace Lab21.Controllers
             return View();
         }
 
+        public ActionResult Register()
+        {
+            return View();
+        }
 
+        public ActionResult AddUser()
+        {
+            return View();
+        }
     }
 }

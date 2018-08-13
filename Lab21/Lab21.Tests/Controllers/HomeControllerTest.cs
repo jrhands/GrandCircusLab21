@@ -26,26 +26,26 @@ namespace Lab21.Tests.Controllers
         }
 
         [TestMethod]
-        public void About()
+        public void Register()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.About() as ViewResult;
+            ViewResult result = controller.Register() as ViewResult;
 
             // Assert
-            Assert.AreEqual("Your application description page.", result.ViewBag.Message);
+            Assert.IsNotNull(result);
         }
 
         [TestMethod]
-        public void Contact()
+        public void AddUser()
         {
             // Arrange
             HomeController controller = new HomeController();
 
             // Act
-            ViewResult result = controller.Contact() as ViewResult;
+            ViewResult result = controller.AddUser() as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);
