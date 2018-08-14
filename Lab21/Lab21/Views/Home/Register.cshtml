@@ -2,6 +2,7 @@
 
 @{
     ViewBag.Title = "Registration";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Registration Page</h1>
@@ -12,12 +13,50 @@
         First Name: @Html.EditorFor(x => Model.FirstName)
     </div>
     <div class="row">
-        Last Name:  @Html.EditorFor(y => Model.LastName)
+        Last Name: @Html.EditorFor(y => Model.LastName)
     </div>
     <div class="row">
-        Email:      @Html.EditorFor(z => Model.Email)
+        Email: @Html.EditorFor(z => Model.Email)
     </div>
 
     <input type="submit" value="AddUser"/>
-    }
+}
 
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("form").validate({
+                wrapper: "div",
+                rules: {
+                    'FirstName': {
+                        required: true,
+                        minlength: 2
+                    },
+                    'LastName': {
+                        required: true,
+                        minlength: 2
+                    },
+                    'Email': {
+                        required: true,
+                        email: true
+                    }
+                },
+                messages: {
+                    'FirstName': {
+                        required: "First name is required",
+                        minLength: "First name must be at least 2 characters"
+                    },
+                    'LastName': {
+                        required: "Last name is required",
+                        minLength: "Last name must be at least 2 characters"
+                    },
+                    'Email': {
+                        required: "Email is required",
+                        email: "Must be a valid email"
+                    }
+                }
+            });
+        });
+    </script>
+}
