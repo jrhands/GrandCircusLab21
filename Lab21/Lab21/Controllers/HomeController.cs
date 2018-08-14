@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Lab21.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -18,9 +19,10 @@ namespace Lab21.Controllers
             return View();
         }
 
-        public ActionResult AddUser()
+        [HttpPost]
+        public ActionResult AddUser(AddUserViewModel model)
         {
-            return View();
+            return View(model);
         }
     }
 }

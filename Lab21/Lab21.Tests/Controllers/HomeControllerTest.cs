@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Lab21;
 using Lab21.Controllers;
+using Lab21.Models;
 
 namespace Lab21.Tests.Controllers
 {
@@ -43,9 +44,10 @@ namespace Lab21.Tests.Controllers
         {
             // Arrange
             HomeController controller = new HomeController();
+            AddUserViewModel model = new AddUserViewModel();
 
             // Act
-            ViewResult result = controller.AddUser() as ViewResult;
+            ViewResult result = controller.AddUser(model) as ViewResult;
 
             // Assert
             Assert.IsNotNull(result);

@@ -1,10 +1,13 @@
-﻿@{
+﻿@model Lab21.Models.AddUserViewModel
+
+@{
     ViewBag.Title = "User Added";
 }
 
 <div>
     <h1>User Added</h1>
-    <p></p>
+    <p>Name: @Html.DisplayFor(x => Model.FirstName) @Html.DisplayFor(x => Model.LastName)</p>
+    <p>Email: @Html.DisplayFor(x => Model.Email)</p>
 </div>
 
 
