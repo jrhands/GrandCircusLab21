@@ -1,62 +1,45 @@
 ﻿@model Lab21.Models.AddUserViewModel
 
-@{
-    ViewBag.Title = "Registration";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
-
-<h1>Registration Page</h1>
-
-@using (@Html.BeginForm("AddUser", "Home", FormMethod.Post))
+@using (Html.BeginForm("AddUser", "Home", FormMethod.Post)) 
 {
-    <div class="row">
-        First Name: @Html.EditorFor(x => Model.FirstName)
-    </div>
-    <div class="row">
-        Last Name: @Html.EditorFor(y => Model.LastName)
-    </div>
-    <div class="row">
-        Email: @Html.EditorFor(z => Model.Email)
-    </div>
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>AddUserViewModel</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.FirstName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-    <input type="submit" value="AddUser"/>
+        <div class="form-group">
+            @Html.LabelFor(model => model.LastName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
 }
 
-@section scripts
-{
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $("form").validate({
-                wrapper: "div",
-                rules: {
-                    'FirstName': {
-                        required: true,
-                        minlength: 2
-                    },
-                    'LastName': {
-                        required: true,
-                        minlength: 2
-                    },
-                    'Email': {
-                        required: true,
-                        email: true
-                    }
-                },
-                messages: {
-                    'FirstName': {
-                        required: "First name is required",
-                        minLength: "First name must be at least 2 characters"
-                    },
-                    'LastName': {
-                        required: "Last name is required",
-                        minLength: "Last name must be at least 2 characters"
-                    },
-                    'Email': {
-                        required: "Email is required",
-                        email: "Must be a valid email"
-                    }
-                }
-            });
-        });
-    </script>
-}
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
