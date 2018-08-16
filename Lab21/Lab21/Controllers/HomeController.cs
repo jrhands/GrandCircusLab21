@@ -1,4 +1,5 @@
-﻿using Lab21.Models;
+﻿using Lab21.Content;
+using Lab21.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,15 @@ namespace Lab21.Controllers
 
         public ActionResult Register()
         {
+            var coffeeOptions = new List<SelectListItem>
+            {
+                new SelectListItem { Text = "Select an option", Value = null, Selected = true }
+            };
+            foreach (MenuItems menuItem in Enum.GetValues(typeof(MenuItems)))
+            {
+                coffeeOptions.Add(new SelectListItem { Text = menuItem.ToString().Replace("_", " "), Value = menuItem.ToString().Replace("_", " ") });
+            }
+            ViewBag.CoffeeOptionsEnum = coffeeOptions;
             return View();
         }
 
